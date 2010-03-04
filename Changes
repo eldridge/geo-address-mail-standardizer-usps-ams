@@ -1,0 +1,6 @@
+Revision history for Perl extension Geo::Address::Mail::Standardizer::USPS::AMS.
+
+0.01  Fri Feb 12 12:20:55 2010
+	- original version; created by h2xs 1.23 with options
+		-A -n Geo::Address::Mail::Standardizer::USPS::AMS
+

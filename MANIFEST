@@ -1,0 +1,8 @@
+AMS.xs
+Changes
+Makefile.PL
+MANIFEST
+ppport.h
+README
+t/Geo-Address-Mail-Standardizer-USPS-AMS.t
+lib/Geo/Address/Mail/Standardizer/USPS/AMS.pm
