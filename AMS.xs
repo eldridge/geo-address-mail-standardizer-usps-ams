@@ -157,8 +157,8 @@ CODE:
 	if (res)
 		croak("z4adrinq failed");
 
-	printf("z4adrinq: %d\n", res);
-	printf("retcc: %d\n", data.retcc);
+	//printf("z4adrinq: %d\n", res);
+	//printf("retcc: %d\n", data.retcc);
 
 	hvres		= newHV();
 	avaddrs		= NULL;
@@ -215,9 +215,9 @@ CODE:
 		break;
 	}
 
-	for (p = &data.foot.a; p < &data.foot.a + sizeof(data.foot); p++)
-		printf("%c", *p && *p == 'A' + p - &data.foot.a ? *p : '-');
-	printf("\n");
+	//for (p = &data.foot.a; p < &data.foot.a + sizeof(data.foot); p++)
+	//	printf("%c", *p && *p == 'A' + p - &data.foot.a ? *p : '-');
+	//printf("\n");
 
 	// if the address inquiry returned any responses at all,
 	// go ahead and standardize them all, creating hashrefs
@@ -233,9 +233,9 @@ CODE:
 		for (i = 0; i < data.respn; i++) {
 			z4adrstd(&data, i);
 
-			for (p = &data.foot.a; p < &data.foot.a + sizeof(data.foot); p++)
-				printf("%c", *p && *p == 'A' + p - &data.foot.a ? *p : '-');
-			printf("\n");
+			//for (p = &data.foot.a; p < &data.foot.a + sizeof(data.foot); p++)
+			//	printf("%c", *p && *p == 'A' + p - &data.foot.a ? *p : '-');
+			//printf("\n");
 
 			hvoaddr = newHV();
 
