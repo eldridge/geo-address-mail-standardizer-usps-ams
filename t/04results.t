@@ -2,7 +2,6 @@ use Test::More;
 
 use_ok 'Geo::Address::Mail::Standardizer::USPS::AMS';
 use_ok 'Geo::Address::Mail::US';
-use_ok 'Data::Dump';
 
 my $ms = new Geo::Address::Mail::Standardizer::USPS::AMS;
 

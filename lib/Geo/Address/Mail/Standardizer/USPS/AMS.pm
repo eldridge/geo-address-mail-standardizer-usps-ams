@@ -50,6 +50,28 @@ has statedir	=> (is => 'rw', isa => 'Str', default => '/var/lib/uspsams');
 
 =head1 METHODS
 
+=head2 new
+
+the Geo::Address::Mail::Standardizer::USPS::AMS constructor
+accepts two arguments:
+
+=over 4
+
+=item datadir (default: /usr/share/uspsams)
+
+the path to the USPS AMS shared data directory.  this
+directory typically contains all of the database files
+provided with AMS.
+
+=item statedir (defaults to /var/lib/uspsams)
+
+the path to the USPS AMS state directory.  this directory
+is expected to contain the Z4CXLOG.DAT date/time file that
+is written to by AMS.  i have no idea what its purpose is;
+AMS won't initialize without it though.
+
+=back
+
 =cut
 
 sub BUILD
@@ -61,7 +83,8 @@ sub BUILD
 
 =head2 init
 
-initializes the AMS database.  called inherently by BUILD.
+initializes the AMS database.  called during construction
+by the BUILD method.
 
 =head2 standardize($address)
 
@@ -97,9 +120,6 @@ sub standardize
 
 	my $res = $self->_standardize($addr);
 
-	use Data::Dump;
-	print 'OUTPUT: '; dd($res);
-
 	return new Geo::Address::Mail::Standardizer::USPS::AMS::Results $res;
 }
 
@@ -107,9 +127,17 @@ sub standardize
 
 Mike Eldridge <diz@cpan.org>
 
+=head1 COPYRIGHT
+
+Copyright (c) 2010 Mike Eldridge
+
 =head1 LICENSE
 
-?
+This program is free software; you can redistribute it and/or modify it
+under the terms of either: the GNU General Public License as published
+by the Free Software Foundation; or the Artistic License.
+
+See http://dev.perl.org/licenses/ for more information.
 
 =cut
 
