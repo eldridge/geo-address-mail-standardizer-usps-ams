@@ -24,8 +24,7 @@ isa_ok $results, 'Geo::Address::Mail::Standardizer::USPS::AMS::Results';
 ok !$results->has_error,				'no has error';
 ok $results->has_found,					'has found';
 ok $results->has_candidates,			'has candidates';
-#ok $results->has_standardized_address,	'has standardized_address';
-ok $results->has_candidates,			'has changed';
+ok $results->has_standardized_address,	'has standardized_address';
 
 cmp_ok $results->found, '==', 2, 'Results->found';
 isa_ok $results->standardized_address, 'Geo::Address::Mail::US';
