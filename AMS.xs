@@ -177,6 +177,7 @@ CODE:
 		break;
 
 		case Z4_DEFAULT:
+            hv_stores(hvres, "default", newSViv(1)); // no break; we want to fall through
 		case Z4_SINGLE:
 			hvoaddr = newHV();
 			hvchanged = newHV();
@@ -229,6 +230,11 @@ CODE:
 	if (data.respn > 0) {
 		avaddrs	= newAV();
 		pages	= ceil(data.respn / 10);
+        if (data.respn > 1) {
+            hv_stores(hvres, "multiple", newSViv(1));
+        } else {
+            hv_stores(hvres, "single", newSViv(1));
+        }
 
 		for (i = 0; i < data.respn; i++) {
 			z4adrstd(&data, i);

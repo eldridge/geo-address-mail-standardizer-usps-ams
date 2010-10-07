@@ -10,6 +10,7 @@ WriteMakefile(
       (ABSTRACT_FROM  => 'lib/Geo/Address/Mail/Standardizer/USPS/AMS.pm', # retrieve abstract from module
        AUTHOR         => 'Mike Eldridge <diz@cpan.org>') : ()),
     LIBS              => ['-lz4'], # e.g., '-lm'
+    #LIBS              => ['-lz4lnx64'], # e.g., '-lm'
     DEFINE            => '-DCASS_CYCLE_M', # e.g., '-DHAVE_SOMETHING'
     INC               => '-I.', # e.g., '-I. -I/usr/include/other'
 	# Un-comment this if you add C files to link with later:

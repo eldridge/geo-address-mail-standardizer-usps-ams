@@ -39,7 +39,7 @@ use Geo::Address::Mail::Standardizer::USPS::AMS::Results;
 
 with 'Geo::Address::Mail::Standardizer';
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 require XSLoader;
 
