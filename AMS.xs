@@ -124,6 +124,7 @@ CODE:
 	HV *		hvoaddr;	// hash: output address
 	HV *		hvres;		// hash: return value
 	HV *		hvchanged;	// hash: changed fields
+	HV *		hvfootnote;	// hash: footnotes
 	SV **		svp;		// pointer to transient scalars
 	SV *		sv;			// scalar: transient value
 	AV *		avaddrs;	// array: list of address hashes
@@ -161,6 +162,7 @@ CODE:
 	//printf("retcc: %d\n", data.retcc);
 
 	hvres		= newHV();
+	hvfootnote	= newHV();
 	avaddrs		= NULL;
 	hvchanged	= NULL;
 	hvoaddr		= NULL;
@@ -216,9 +218,17 @@ CODE:
 		break;
 	}
 
-	//for (p = &data.foot.a; p < &data.foot.a + sizeof(data.foot); p++)
-	//	printf("%c", *p && *p == 'A' + p - &data.foot.a ? *p : '-');
-	//printf("\n");
+	// Populate the footnotes hash
+	for (p = &data.foot.a; p < &data.foot.a + sizeof(data.foot); p++)
+		if(*p && *p == 'A' + p - &data.foot.a) {
+			char * hkey;
+			hkey = malloc(2);
+			snprintf(hkey, 2, "%c", *p);
+			hv_store(hvfootnote, hkey, 1, newSViv(1), 0);
+			free(hkey);
+		}
+//		printf("%c", *p && *p == 'A' + p - &data.foot.a ? *p : '-');
+//	printf("\n");
 
 	// if the address inquiry returned any responses at all,
 	// go ahead and standardize them all, creating hashrefs
@@ -269,6 +279,7 @@ CODE:
 	}
 
 	hv_stores(hvres, "found", newSViv(data.respn));
+	hv_stores(hvres, "footnotes", newRV_inc((SV *) hvfootnote));
 
 	if (avaddrs)
 		hv_stores(hvres, "candidates", newRV_inc((SV *) avaddrs));
